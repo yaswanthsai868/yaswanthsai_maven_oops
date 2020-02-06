@@ -97,17 +97,70 @@ public class App
         	case 4:
         		break;
         	default:
-        		System.out.println("Invalid option");
+        		System.out.println("Invalid option\nPlease select again");
         	}
         	if(op!=4)
         	{
         		System.out.println("After Sorting....");
-        		for(Gift x:gift)
+        		for(int i=0;i<gift.size();i++)
         		{
-        			x.display();
+        			System.out.println("Gift:"+i+1);
+        			gift.get(i).display();
         		}
         	}
         }while(op!=4);
+        System.out.println("Getting the candies in a gift");
+        do
+        {
+        	System.out.println("Select the option below");
+        	System.out.println("1: Candies by weight");
+        	System.out.println("2: Candies by cost");
+        	System.out.println("3: Exit");
+        	op=inp.nextInt();
+        	int mi=0,ma=0;
+        	switch(op)
+        	{
+        	case 1:
+        		System.out.println("Enter the range of weight to consider");//min max
+        		mi=inp.nextInt();
+        		ma=inp.nextInt();
+        		break;
+        	case 2:
+        		System.out.println("Enter the range of Cost to consider");//min max
+        		mi=inp.nextInt();
+        		ma=inp.nextInt();
+        		break;
+        	case 3:
+        		break;
+        	default:
+        		System.out.println("Invalid option\nPlease select again");
+        	}
+        	if(op!=3)
+        	{
+        		System.out.print("The candies with ");
+        		if(op==1)
+        			System.out.print("Weight ");
+        		else
+        			System.out.println("Cost ");
+        		System.out.println("int The range "+mi+","+ma+"are");
+        		for(int i=0;i<gift.size();i++)
+        		{
+        			System.out.println("Gift:"+(i+1));
+        			ArrayList<Chocolates> x=gift.get(i).getCArray();
+        			for(int j=0;j<x.size();j++)
+        			{
+        				int w[]=new int[2];
+        				w[0]=x.get(j).getWeigth();
+        				w[1]=x.get(j).getCost();
+        				if(w[op-1]>=mi && w[op-1]<=ma)
+        				{
+        					System.out.println(x.get(j).getName());
+        				}
+        			}
+        		}
+        	}
+        }while(op!=3);
         inp.close();
+        System.out.println("Thank You....");
     }
 }
